@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<!--
+    Copyright (C) 2018 Christian Römer
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+    Contact: https://github.com/thunfischtoast or christian.roemer[ät]posteo.de
+-->
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Christians Kugellager Kalkulator</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<style>
+	h1 { color: #7c795d; font-family: 'Trocchi', serif; font-size: 45px; font-weight: normal; line-height: 48px; margin: 0; }
+
+	h2 { color: #ffcc66; font-family: 'Source Sans Pro', sans-serif; font-size: 26px; font-weight: 300; line-height: 32px; margin: 0 0 24px; }
+
+	.subheader { font-size: 26px; font-weight: 300; color: #ffcc66; margin: 0 0 24px; }
+
+	p { color: #4c4a37; font-family: 'Source Sans Pro', sans-serif; font-size: 18px; line-height: 32px; margin: 0 0 24px; }
+
+	a { color: #ff9900; background: #fff4a3; text-decoration: none; }
+
+	a:hover { color: #ffcc66 }
+
+	body { background: #fefad7; text-align:center; width:100% }
+
+	button {
+	margin: 12px 0 0 12px;
+	-moz-box-shadow: 0px 1px 0px 0px #fff6af;
+	-webkit-box-shadow: 0px 1px 0px 0px #fff6af;
+	box-shadow: 0px 1px 0px 0px #fff6af;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ffec64), color-stop(1, #ffab23));
+	background:-moz-linear-gradient(top, #ffec64 5%, #ffab23 100%);
+	background:-webkit-linear-gradient(top, #ffec64 5%, #ffab23 100%);
+	background:-o-linear-gradient(top, #ffec64 5%, #ffab23 100%);
+	background:-ms-linear-gradient(top, #ffec64 5%, #ffab23 100%);
+	background:linear-gradient(to bottom, #ffec64 5%, #ffab23 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffec64', endColorstr='#ffab23',GradientType=0);
+	background-color:#ffec64;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid #ffaa22;
+	display:inline-block;
+	cursor:pointer;
+	color:#333333;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffee66;
+
+	}
+
+.styled-select {
+   background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat 96% 0;
+   height: 29px;
+   overflow: hidden;
+   width: 80px;
+	border: none;
+}
+
+select {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	text-indent: 5px;
+	text-overflow: '';
+}
+
+.styled-select select {
+   background: transparent;
+   border: none;
+   font-size: 14px;
+   height: 29px;
+   padding: 5px; /* If you add too much padding here, the options won't show in IE */
+   width: 268px;
+}
+
+
+.styled-select.slate {
+   background: url(http://i62.tinypic.com/2e3ybe1.jpg) no-repeat right center;
+   height: 34px;
+   width: 240px;
+}
+
+.styled-select.slate select {
+   border: 1px solid #ccc;
+   font-size: 16px;
+   height: 34px;
+   width: 268px;
+}
+
+/* -------------------- Rounded Corners */
+.rounded {
+   -webkit-border-radius: 20px;
+   -moz-border-radius: 20px;
+   border-radius: 20px;
+}
+
+.yellow  { background-color: #eec111; }
+
+.yellow select  { color: #000; }
+</style>
+<body background-color="fefad7">
+<h1>Christians Kugellager Kalkulator</h1>
+<h2>"Es gibt nichts Gutes, außer man tut es" - Erich Kästner</h2>
+<p>
+	Anzahl Stühle 
+	<select id="teilnehmeranzahl" class="styled-select yellow rounded">
+		<option value="6">6</option>
+		<option value="8">8</option>
+		<option value="10">10</option>
+		<option value="12">12</option>
+		<option value="14">14</option>
+		<option value="16">16</option>
+		<option value="18">18</option>
+		<option value="20">20</option>
+		<option value="22">22</option>
+		<option value="24">24</option>
+		<option value="26">26</option>
+		<option value="28">28</option>
+		<option value="30">30</option>
+		<option value="32">32</option>
+	</select>
+	<button id="neubutton" onclick="changeOutput()">
+		Neu
+	</button>
+</p>
+<p id="output">Output: <p/>
+<hr>
+<footer>
+	Copyright (C) 2018 Christian Römer<br/>
+	Datenschutzhinweis: Diese Seite speichert keinerlei personenbezogene Daten. Alle Berechnungen finden auf Ihrem Gerät statt.<br/>
+	Kontakt: <SCRIPT TYPE="text/javascript">
+	  document.write('christian.roemer[ät]' + 'posteo.de')
+	</SCRIPT><br/>
+	Dieses Programm ist freie Software. Das Betrachten, Ausführen, Anpassen und Verbreiten ist unter den Bedingungen der <a href="https://www.gnu.org/licenses/quick-guide-gplv3.de.html">GNU General Public License Version 3</a> erlaubt. Dieses Programm wurde in der Hoffnung geschrieben nützlich zu sein, kommt aber OHNE JEGLICHE GARANTIE auf Fehlerfreiheit oder Funktionsfähigkeit.
+	
+</footer>
+<script>
+	function permute(arr) {
+		var goodsolution = false;
+		while(!goodsolution){
+			goodsolution = true;
+			for (var i = 1; i < arr.length-1; i++) {
+				var newPos = Math.floor((Math.random() * (arr.length - i) + i));
+				var temp = arr[newPos];
+				arr[newPos] = arr[i];
+				arr[i] = temp;
+			}
+			
+			for (var i = 0; i < arr.length-1; i++){
+				var diff = Math.abs(arr[i] - arr[i+1]);
+				if(diff > 5 && arr.length - diff > 5){
+					goodsolution = false;
+				}
+			}
+			
+		}
+	
+		return arr;
+	}
+
+	function changeOutput(){
+		var cnt = document.getElementById("teilnehmeranzahl").value;
+		
+		var rotations = cnt / 2;
+		
+		arr = [...Array(rotations).keys()];
+		
+		var output = "Output: Anzahl Teilnehmer=" + cnt;
+		
+		arr = permute(arr);
+		
+		output = output + "<br/><br/>" + arr;
+		
+		var curPartner = 0;
+		for (var i = 1; i < arr.length; i++){
+			var diff = arr[i] - curPartner;
+			
+			var possibilities = []
+			
+			if(diff > 0){
+				if(diff <= 5){
+					if(Math.random() <= 0.5){
+						possibilities.push("<br/><br/> Außen rotiert um " + diff + " nach rechts");
+					} else{
+						possibilities.push("<br/><br/> Innen rotiert um " + diff + " nach rechts");
+					}
+				} else {
+					diff = arr.length - diff;
+					if(Math.random() <= 0.5){
+						possibilities.push("<br/><br/> Außen rotiert um " + diff + " nach links");
+					} else{
+						possibilities.push("<br/><br/> Innen rotiert um " + diff + " nach links");
+					}
+				}
+			} else {
+				if(diff >= -5){
+					if(Math.random() <= 0.5){
+						possibilities.push("<br/><br/> Außen rotiert um " + Math.abs(diff) + " nach links");
+					} else{
+						possibilities.push("<br/><br/> Innen rotiert um " + Math.abs(diff) + " nach links");
+					}
+				} else {
+					diff = arr.length + diff;
+					if(Math.random() <= 0.5){
+						possibilities.push("<br/><br/> Außen rotiert um " + Math.abs(diff) + " nach rechts");
+					} else{
+						possibilities.push("<br/><br/> Innen rotiert um " + Math.abs(diff) + " nach rechts");
+					}
+				}
+			}
+			
+			var chosen = possibilities[Math.floor(Math.random() * possibilities.length)]
+			output = output + chosen;
+			curPartner = arr[i]
+		}
+		
+		document.getElementById("output").innerHTML = output;
+	}
+</script>
+
+</body>
+</html> 
